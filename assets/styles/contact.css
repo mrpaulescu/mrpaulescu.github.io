@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.css");
+
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+/* Custom Variables */
+:root {
+    --background: #fffffc;
+    --primary: #407BFF;
+    --secondary: #ececec;
+    --text-color: #29292b;
+}
+
+/* Navbar */
+nav.navbar {
+    background: var(--background);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+}
+
+.navbar-brand h1 {
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary);
+}
+.navbar-brand-2 h1 {
+    color:#29292b;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Sections */
+section {
+    padding: 60px 20px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Contact Section */
+#contact ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#contact ul li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: var(--primary);
+    color: var(--background);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+}
