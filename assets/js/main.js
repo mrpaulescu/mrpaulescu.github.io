@@ -41,7 +41,7 @@ function handleCurrentYear() {
     const year = new Date().getFullYear()
     const currenYear = document.querySelector("#currentYear")
 
-    currenYear.innerText = year
+    currenYear.innerText = year;
 }
 
 handleCurrentYear()
