@@ -1,4 +1,6 @@
+
 import footerCopyrightHandler from "../js/footer.js";
+
 
 footerCopyrightHandler()
 document.addEventListener('DOMContentLoaded', function() {
@@ -82,3 +84,4 @@ function handleCurrentYear() {
 }
 
 handleCurrentYear()
+

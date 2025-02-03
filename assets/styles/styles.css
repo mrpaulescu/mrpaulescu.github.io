@@ -1,0 +1,137 @@
+/* Default (Light) Mode Styles */
+body {
+    background-color: white;
+    color: black;
+}
+
+.navbar {
+    background-color: #f8f9fa; /* Light background for the navbar */
+}
+
+/* Dark Mode Styles */
+body.night-mode {
+    background-color: #2c2c2c; /* Dark grey background for the body */
+    color: #ffffff; /* White text by default */
+}
+
+body.night-mode .navbar {
+    background-color: #1f1f1f; /* Slightly darker background for navbar */
+}
+
+body.night-mode .navbar-brand-2 h1 {
+    color: #3399ff; /* Logo color blue for the title */
+}
+
+body.night-mode footer {
+    background-color: #1a1a1a; /* Darker footer background */
+    color: #aaaaaa; /* Soft grey footer text */
+}
+
+/* Links or clickable text in night mode */
+
+
+/* Button Styles in Night Mode */
+body.night-mode #nightModeToggle {
+    background-color: #3399ff; /* Blue background for night mode toggle button */
+    color: #ffffff; /* White text for the button */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+/* Navbar text (links) */
+body.night-mode .navbar-nav .nav-link {
+    color: #ffffff; /* White text for navbar links */
+}
+
+body.night-mode .navbar-nav .nav-link:hover {
+    color: #3399ff; /* Blue hover effect for links */
+}
+
+/* Specific text or content for better readability */
+body.night-mode h1, body.night-mode h2, body.night-mode h3, body.night-mode p {
+    color: #ffffff; /* White text for headings and paragraphs */
+}
+
+body.night-mode .presimulare label {
+    color: #3399ff; /* Blue for checkboxes labels */
+}
+
+body.night-mode .presimulare span {
+    color: #ffffff; /* White for countdown and other span text */
+}
+
+/* Resources Section: card styles */
+body.night-mode .card {
+    background-color: #3a3a3a; /* Dark background for cards */
+    color: #ffffff; /* White text */
+}
+
+body.night-mode .card-title {
+    color: #3399ff; /* Blue color for card titles */
+}
+
+
+
+
+/* Night Mode Styles for the Card */
+body.night-mode .card {
+    background-color: #3a3a3a !important;
+    color: #ffffff; /* White text for better contrast */
+    border: 1px solid #444; /* Optional: Adds a subtle border */
+}
+
+body.night-mode .card-title {
+    color: #3399ff; /* Blue color for card titles */
+}
+
+body.night-mode .card-text {
+    color: #080808; /* Lighter grey for card text */
+}
+
+/* Button Styles inside Card */
+
+
+body.night-mode .card .btn:hover {
+    background-color: #2670d5; /* Darker blue when hovering */
+}
+
+
+/* Night Mode Styles for Tables */
+body.night-mode table {
+    background-color: #333; /* Dark background for the entire table */
+    color: #ffffff; /* White text for better contrast */
+    border-collapse: collapse; /* Ensures borders are collapsed together */
+    width: 100%; /* Ensure table takes up full width */
+}
+
+body.night-mode table th, 
+body.night-mode table td {
+    padding: 12px 15px; /* Adds padding for spacing inside cells */
+    border: 1px solid #444; /* Light border for a subtle contrast */
+}
+
+body.night-mode table th {
+    background-color: #555; /* Darker background for table headers */
+    color: #ffffff; /* White text for header */
+    text-align: left; /* Align headers to the left */
+}
+
+body.night-mode table td {
+    background-color: #3a3a3a; /* Dark gray background for table data */
+    color: #cccccc; /* Lighter text color for table data */
+}
+
+/* Hover effect for table rows */
+body.night-mode table tr:hover {
+    background-color: #555; /* Slightly lighter background for rows when hovered */
+}
+
+/* Table Links */
+
+
+body.night-mode table a:hover {
+    text-decoration: underline; /* Underline links on hover */
+}
+
+

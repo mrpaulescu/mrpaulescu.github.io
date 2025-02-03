@@ -155,7 +155,10 @@ img {
 ---------------------------------------------
 GLOBAL STYLES
 --------------------------------------------- 
+
 */
+
+
 
 h1 {
     color: var(--primary);
@@ -684,3 +687,69 @@ MEDIA QUERIES
         padding: 8px 170px !important;
     }
 }
+
+/* Base styles (for day mode) */
+#resources {
+    background-color: #f9f9f9; /* Light background for the resources section */
+    padding: 40px 0;
+    color: #333; /* Default text color */
+}
+
+#resources h2 {
+    font-size: 32px;
+    color: #333; /* Dark color for main heading */
+    margin-bottom: 20px;
+}
+
+#resources p {
+    font-size: 18px;
+    color: #555; /* Softer text for the description */
+    margin-bottom: 30px;
+}
+
+.resources-list h4 {
+    font-size: 24px;
+    color: #333; /* Dark color for subheadings */
+    margin-bottom: 10px;
+}
+
+.resources-list ul li a {
+    text-decoration: none;
+    color: #3399ff; /* Blue color for links */
+    font-size: 18px;
+}
+
+/* Night Mode Styles */
+body.night-mode #resources {
+    background-color: #333; /* Darker background */
+    color: #fff; /* Light text color */
+}
+
+body.night-mode #resources h2,
+body.night-mode .resources-list h4 {
+    color: #fff; /* Light color for headings */
+}
+
+body.night-mode #resources p {
+    color: #bbb; /* Softer light color for paragraphs */
+}
+
+body.night-mode .resources-list ul li a {
+    color: #66b3ff; /* Lighter blue for links */
+}
+
+body.night-mode .resources-list ul li a:hover {
+    color: #a3c2ff; /* Lighter hover color */
+}
+
+
+/* Custom spacing for navbar items */
+.navbar-nav .nav-item {
+    margin-right: 15px; /* Adjusts the space between items */
+}
+
+/* Optional: Ensure the night mode button aligns nicely */
+#nightModeToggle {
+    margin-left: 15px; /* Adjust the space to the left of the button */
+}
+
