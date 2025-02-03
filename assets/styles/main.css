@@ -423,6 +423,70 @@ section.hero {
         justify-content: center;
     }
 }
+/* Make the container for the checkbox and time display use Flexbox */
+/* Default styling for the section */
+.selection {
+    width: 100%;
+    padding: 0 20px; /* Add padding to the left and right of the entire section */
+}
+
+.presimulare-section {
+    margin-top: 30px; /* Adds space between each section */
+}
+
+h3 {
+    text-align: left; /* Left align the headings */
+    font-size: 38px;  /* Set a default font size */
+    margin-left: 40px; /* Indentation from the left */
+}
+
+.presimulare {
+    display: flex;               /* Use Flexbox for layout */
+    align-items: center;         /* Vertically align the checkbox and the countdown */
+    gap: 10px;                   /* Add space between the checkbox and the countdown */
+    justify-content: flex-start; /* Align to the left */
+    margin-top: 10px;            /* Space between label and checkbox */
+    margin-left: 30px;           /* Indentation from the left to align with h3 */
+}
+
+.presimulare label {
+    font-size: 28px;
+    font-weight: normal;
+    display: flex;
+    align-items: left;
+    gap: 10px;                   /* Adds space between checkbox and text */
+}
+
+#timeUntilMay22, #timeUntilMarch9 {
+    font-size: 26px;
+    color: #333;
+    margin-left: 40px;           /* Adds space between label and countdown */
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    h3 {
+        font-size: 20px;        /* Smaller font size for mobile */
+        margin-left: 20px;      /* Less indentation on mobile */
+    }
+
+    .presimulare {
+        justify-content: flex-start; /* Keep countdown aligned to the left */
+        margin-left: 20px;          /* Maintain same indentation for countdown */
+        width: 100%;                /* Make sure it takes full width on mobile */
+    }
+
+    .presimulare label {
+        font-size: 16px;          /* Adjust label font size for mobile */
+    }
+
+    #timeUntilMay22, #timeUntilMarch9 {
+        font-size: 14px;          /* Adjust font size of countdown */
+        margin-left: 10px;        /* Reduce margin between label and time */
+    }
+}
+
+
 
 /* 
 ---------------------------------------------
