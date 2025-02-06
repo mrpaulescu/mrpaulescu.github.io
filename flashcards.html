@@ -4,76 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcards</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-        }
-        .deck {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .flashcards {
-            display: none;
-            margin-top: 10px;
-            padding-left: 20px;
-        }
-        .flashcard {
-            background-color: #e9f7ff;
-            padding: 10px;
-            border: 1px solid #ccc;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="assets/styles/main.css">
+   
+    <link rel="stylesheet" href="assets/styles/styles.css">
 
-<h1>Flashcards</h1>
-<div id="decks-container"></div>
-
-<script>
-    // Fetch the flashcards data (this will be your flashcards.json data)
-    fetch('D:/Submed gut/Submed/assets/files/flashcards.json')
-        .then(response => response.json())
-        .then(data => {
-            const decksContainer = document.getElementById('decks-container');
-
-            // Iterate through each deck and create a clickable section for it
-            for (let deckName in data) {
-                const deckDiv = document.createElement('div');
-                deckDiv.classList.add('deck');
-                deckDiv.textContent = deckName;
-
-                // Create the flashcards container (hidden by default)
-                const flashcardsDiv = document.createElement('div');
-                flashcardsDiv.classList.add('flashcards');
-
-                // Add flashcards for the current deck
-                data[deckName].forEach(flashcard => {
-                    const flashcardDiv = document.createElement('div');
-                    flashcardDiv.classList.add('flashcard');
-                    flashcardDiv.innerHTML = `<strong>Question:</strong> ${flashcard.question}<br><strong>Answer:</strong> ${flashcard.answer}`;
-                    flashcardsDiv.appendChild(flashcardDiv);
-                });
-
-                // Toggle flashcards visibility on deck click
-                deckDiv.addEventListener('click', () => {
-                    flashcardsDiv.style.display = flashcardsDiv.style.display === 'none' ? 'block' : 'none';
-                });
-
-                // Append the deck and flashcards to the container
-                deckDiv.appendChild(flashcardsDiv);
-                decksContainer.appendChild(deckDiv);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    </head>
+    <body>
+        <h1>Anki APKG Viewer</h1>
+        <input type="file" id="fileInput" accept=".apkg">
+        <div id="cardContainer">
+            <div class="card" id="card">
+                <div class="front" id="front">Front</div>
+                <div class="back" id="back">Back</div>
+            </div>
+        </div>
+        <button id="prev">Previous</button>
+        <button id="flip">Flip</button>
+        <button id="next">Next</button>
+        <script>
+            let currentCardIndex = 0;
+            let cards = [];
+            
+            document.getElementById('flip').addEventListener('click', function() {
+                document.getElementById('card').classList.toggle('flipped');
+            });
+            
+            document.getElementById('next').addEventListener('click', function() {
+                if (currentCardIndex < cards.length - 1) {
+                    currentCardIndex++;
+                    updateCardDisplay();
+                }
+            });
+            
+            document.getElementById('prev').addEventListener('click', function() {
+                if (currentCardIndex > 0) {
+                    currentCardIndex--;
+                    updateCardDisplay();
+                }
+            });
+            
+            function updateCardDisplay() {
+                if (cards.length > 0) {
+                    document.getElementById('front').textContent = cards[currentCardIndex].front;
+                    document.getElementById('back').textContent = cards[currentCardIndex].back;
+                }
             }
-        })
-        .catch(error => console.error('Error loading flashcards:', error));
-</script>
-
-</body>
-</html>
+            
+            document.getElementById('fileInput').addEventListener('change', async function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    try {
+                        const zip = new JSZip();
+                        const zipData = await file.arrayBuffer();
+                        const contents = await zip.loadAsync(zipData);
+                        
+                        let dbFile = contents.file("collection.anki2") || contents.file("collection.anki21");
+                        if (!dbFile) {
+                            alert("Unsupported APKG format. Please update your Anki version and try again.");
+                            return;
+                        }
+                        
+                        const dbArrayBuffer = await dbFile.async("arraybuffer");
+                        const SQL = await initSqlJs({ locateFile: () => "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm" });
+                        const db = new SQL.Database(new Uint8Array(dbArrayBuffer));
+                        
+                        const query = "SELECT flds FROM notes";
+                        const stmt = db.prepare(query);
+                        cards = [];
+                        
+                        while (stmt.step()) {
+                            let row = stmt.getAsObject();
+                            let fields = row.flds.split("\u001f"); // Anki uses \u001f as a separator
+                            cards.push({ front: fields[0], back: fields[1] });
+                        }
+                        
+                        stmt.free();
+                        updateCardDisplay();
+                    } catch (error) {
+                        console.error("Error processing APKG file:", error);
+                        alert("Failed to load the APKG file. Please ensure it's a valid Anki package.");
+                    }
+                }
+            });
+        </script>
+    </body>
+    </html>
