@@ -207,6 +207,18 @@ section h2::after {
     background-color: var(--primary);
 }
 
+h2#admitere-title::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 7px;
+    background-color: var(--primary);
+}
+
+
 /* 
 ---------------------------------------------
 NAVBAR

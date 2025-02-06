@@ -136,4 +136,36 @@ body.night-mode table a:hover {
     text-decoration: underline; /* Underline links on hover */
 }
 
+/* Dark Mode Styles for Hero Section */
+body.night-mode .hero {
+    background-color: #1e1e1e; /* Dark background */
+    background-image: none; /* Remove grid background */
+    color: white; /* Change text color */
+}
 
+body.night-mode .hero p {
+    color: #f0f0f0; /* Lighter text color */
+}
+
+body.night-mode .hero .buttons button {
+    background: #333; /* Darker button background */
+    color: white; /* Button text color */
+}
+
+body.night-mode .hero .buttons button:hover {
+    background: #555; /* Slightly lighter on hover */
+}
+
+
+/* Light Mode (Default) */
+#timeUntilMay22, #timeUntilMarch9 {
+    font-size: 26px;
+    color: #333; /* Default dark grey */
+    margin-left: 40px;
+}
+    
+/* Dark Mode Styles */
+body.night-mode #timeUntilMay22,
+body.night-mode #timeUntilMarch9 {
+    color: #ffffff !important; /* White text for better contrast */
+}
