@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        .deck {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .flashcards {
+            display: none;
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .flashcard {
+            background-color: #e9f7ff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Flashcards</h1>
+<div id="decks-container"></div>
+
+<script>
+    // Fetch the flashcards data (this will be your flashcards.json data)
+    fetch('D:/Submed gut/Submed/assets/files/flashcards.json')
+        .then(response => response.json())
+        .then(data => {
+            const decksContainer = document.getElementById('decks-container');
+
+            // Iterate through each deck and create a clickable section for it
+            for (let deckName in data) {
+                const deckDiv = document.createElement('div');
+                deckDiv.classList.add('deck');
+                deckDiv.textContent = deckName;
+
+                // Create the flashcards container (hidden by default)
+                const flashcardsDiv = document.createElement('div');
+                flashcardsDiv.classList.add('flashcards');
+
+                // Add flashcards for the current deck
+                data[deckName].forEach(flashcard => {
+                    const flashcardDiv = document.createElement('div');
+                    flashcardDiv.classList.add('flashcard');
+                    flashcardDiv.innerHTML = `<strong>Question:</strong> ${flashcard.question}<br><strong>Answer:</strong> ${flashcard.answer}`;
+                    flashcardsDiv.appendChild(flashcardDiv);
+                });
+
+                // Toggle flashcards visibility on deck click
+                deckDiv.addEventListener('click', () => {
+                    flashcardsDiv.style.display = flashcardsDiv.style.display === 'none' ? 'block' : 'none';
+                });
+
+                // Append the deck and flashcards to the container
+                deckDiv.appendChild(flashcardsDiv);
+                decksContainer.appendChild(deckDiv);
+            }
+        })
+        .catch(error => console.error('Error loading flashcards:', error));
+</script>
+
+</body>
+</html>
